@@ -26,7 +26,9 @@
 #include "board.h"
 #include "audio_mem.h"
 
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_AUDIO_KIT_USING_SDCARD)
 #include "periph_sdcard.h"
+#endif
 #include "led_indicator.h"
 #include "periph_button.h"
 
@@ -84,6 +86,7 @@ esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
                      (1ULL << get_input_voldown_id())   | \
                      (1ULL << get_input_mode_id())      | \
                      (1ULL << get_input_set_id())       | \
+                     (1ULL << get_input_rec_id())       | \
                      (1ULL << get_input_play_id())
     };
     esp_periph_handle_t button_handle = periph_button_init(&btn_cfg);
@@ -93,6 +96,7 @@ esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
     return ret;
 }
 
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_AUDIO_KIT_USING_SDCARD)
 esp_err_t audio_board_sdcard_init(esp_periph_set_handle_t set, periph_sdcard_mode_t mode)
 {
     if (mode >= SD_MODE_4_LINE) {
@@ -122,6 +126,7 @@ esp_err_t audio_board_sdcard_init(esp_periph_set_handle_t set, periph_sdcard_mod
     }
     return ret;
 }
+#endif
 
 audio_board_handle_t audio_board_get_handle(void)
 {

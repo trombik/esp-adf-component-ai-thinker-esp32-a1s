@@ -21,13 +21,29 @@ pin assignments.
 Here is a list of tested peripherals:
 
 - [x] Audio output to speakers
-- [ ] Keys
+- [x] Keys
 - [ ] On-board green LED
 - [ ] Mic input
 - [ ] Line input
 - [ ] On-board microphones
 - [ ] SD card
 - [ ] Battery charger
+
+## Keys
+
+To test keys, use `${ADF_PATH}/examples/checks/check_board_buttons`.
+
+| Name   | Function in `esp-adf` |
+|--------|-----------------------|
+| `KEY1` | Mode                  |
+| `KEY2` | Rec                   |
+| `KEY3` | Play                  |
+| `KEY4` | Set                   |
+| `KEY5` | Volume down           |
+| `KEY6` | Volume up             |
+
+Note that `KEY2` cannot be used with SD card because the `GPIO` for `KEY2` is
+shared with SD card peripheral.
 
 ## Tested environment
 

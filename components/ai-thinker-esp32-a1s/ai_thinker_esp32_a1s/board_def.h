@@ -28,6 +28,7 @@
 /**
  * @brief SDCARD Function Definition
  */
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_AUDIO_KIT_USING_SDCARD)
 #define FUNC_SDCARD_EN            (1)
 #define SDCARD_OPEN_FILE_NUM_MAX  5
 #define SDCARD_INTR_GPIO          GPIO_NUM_34
@@ -37,6 +38,17 @@
 #define ESP_SD_PIN_D1             GPIO_NUM_4
 #define ESP_SD_PIN_D2             GPIO_NUM_12
 #define ESP_SD_PIN_D3             GPIO_NUM_13
+#else
+#define FUNC_SDCARD_EN            (0)
+#define SDCARD_OPEN_FILE_NUM_MAX  5
+#define SDCARD_INTR_GPIO          -1
+#define ESP_SD_PIN_CLK            -1
+#define ESP_SD_PIN_CMD            -1
+#define ESP_SD_PIN_D0             -1
+#define ESP_SD_PIN_D1             -1
+#define ESP_SD_PIN_D2             -1
+#define ESP_SD_PIN_D3             -1
+#endif
 
 /**
  * @brief LED Function Definition
@@ -76,19 +88,19 @@ extern audio_hal_func_t AUDIO_CODEC_ES8388_DEFAULT_HANDLE;
  */
 #define FUNC_BUTTON_EN            (1)
 #define INPUT_KEY_NUM             6
-#define BUTTON_VOLUP_ID           0 /* KEY6 */
-#define BUTTON_VOLDOWN_ID         1 /* KEY5 */
-#define BUTTON_SET_ID             2 /* KEY4 */
-#define BUTTON_PLAY_ID            3 /* KEY3 */
-#define BUTTON_COLOR_ID           4 /* KEY2 */
-#define BUTTON_MODE_ID            5 /* KEY1 */
+#define BUTTON_VOLUP_ID           GPIO_NUM_5  /* KEY6 */
+#define BUTTON_VOLDOWN_ID         GPIO_NUM_18 /* KEY5 */
+#define BUTTON_SET_ID             GPIO_NUM_23 /* KEY4 */
+#define BUTTON_PLAY_ID            GPIO_NUM_19 /* KEY3 */
+#define BUTTON_REC_ID             GPIO_NUM_13 /* KEY2 */
+#define BUTTON_MODE_ID            GPIO_NUM_36 /* KEY1 */
 
 /* TODO with GPIO36, it might possible to use ADC buttons */
 #define INPUT_KEY_DEFAULT_INFO() {                  \
     {                                               \
         .type = PERIPH_ID_BUTTON,                   \
-        .user_id = INPUT_KEY_USER_ID_COLOR,         \
-        .act_id = BUTTON_COLOR_ID,                  \
+        .user_id = INPUT_KEY_USER_ID_REC,         \
+        .act_id = BUTTON_REC_ID,                  \
     },                                              \
     {                                               \
         .type = PERIPH_ID_BUTTON,                   \

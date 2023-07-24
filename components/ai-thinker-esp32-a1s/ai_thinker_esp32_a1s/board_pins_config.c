@@ -88,6 +88,7 @@ esp_err_t get_spi_pins(spi_bus_config_t *spi_config, spi_device_interface_config
 }
 
 // sdcard detect gpio
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_AUDIO_KIT_USING_SDCARD)
 int8_t get_sdcard_intr_gpio(void)
 {
     return SDCARD_INTR_GPIO;
@@ -97,6 +98,7 @@ int8_t get_sdcard_open_file_num_max(void)
 {
     return SDCARD_OPEN_FILE_NUM_MAX;
 }
+#endif
 
 // volume up button
 int8_t get_input_volup_id(void)
@@ -132,4 +134,10 @@ int8_t get_input_set_id(void)
 int8_t get_input_play_id(void)
 {
     return BUTTON_PLAY_ID;
+}
+
+// rec button, or key 2
+int8_t get_input_rec_id(void)
+{
+    return BUTTON_REC_ID;
 }

@@ -141,3 +141,8 @@ int8_t get_input_rec_id(void)
 {
     return BUTTON_REC_ID;
 }
+
+int8_t get_green_led_gpio(void)
+{
+    return GREEN_LED_GPIO;
+}

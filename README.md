@@ -22,14 +22,14 @@ Here is a list of tested peripherals:
 
 - [x] Audio output to speakers
 - [x] Keys
-- [ ] On-board green LED
+- [x] On-board LEDs
 - [ ] Mic input
 - [ ] Line input
 - [ ] On-board microphones
 - [ ] SD card
 - [ ] Battery charger
 
-## Keys
+### Keys
 
 To test keys, use `${ADF_PATH}/examples/checks/check_board_buttons`.
 
@@ -44,6 +44,15 @@ To test keys, use `${ADF_PATH}/examples/checks/check_board_buttons`.
 
 Note that `KEY2` cannot be used with SD card because the `GPIO` for `KEY2` is
 shared with SD card peripheral.
+
+### On-board LED
+
+The board has two red LEDs connected to GPIO pins. By default, only one LED is
+useable. Unlike official development boards from `espressif`, the color is
+red. `esp-adf` provides `get_blue_led_gpio()` and `get_green_led_gpio()`, not
+one for red LED.
+
+To test the LED, use `${ADF_PATH}/examples/checks/check_display_led`.
 
 ## Tested environment
 

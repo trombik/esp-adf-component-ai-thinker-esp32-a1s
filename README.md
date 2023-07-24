@@ -29,6 +29,10 @@ Here is a list of tested peripherals:
 - [ ] SD card
 - [ ] Battery charger
 
+### Speaker outputs
+
+To test speaker outputs, use `${ADF_PATH}/examples/player/pipeline_http_mp3`.
+
 ### Keys
 
 To test keys, use `${ADF_PATH}/examples/checks/check_board_buttons`.

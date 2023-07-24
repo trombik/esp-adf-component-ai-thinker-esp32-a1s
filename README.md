@@ -2,7 +2,13 @@
 
 ## Usage
 
-* Select `Custom audio board` under `Audio HAL` > `Audio board` in `menuconfig`
+* Clone the repository by `git clone https://github.com/trombik/esp-adf-component-ai-thinker-esp32-a1s.git`
+* Create `components` directory in a project directory
+* Create a symlink to
+  `idf-component-ai-thinker-esp32-a1s/components/ai-thinker-esp32-a1s` under
+  `components`.
+* Run `idf.py menuconfig`
+* Select `Custom audio board` under `Audio HAL` > `Audio board`
 * Select a custom board under `Custom Audio Board`
 
 ## Supported boards

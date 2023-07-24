@@ -1,0 +1,13 @@
+menu "Custome Audio Board"
+
+choice CUSTOMER_AUDIO_BOARD
+    prompt "Select a custom audio board"
+    default AI_THINKER_ESP32_A1S
+    help
+        Select an audio board to use with the ESP-ADF
+
+config AI_THINKER_ESP32_A1S
+    bool "Ai Thinker ESP32 A1S (variant ES8388)"
+endchoice
+
+endmenu

@@ -68,3 +68,11 @@ To test the LED, use `${ADF_PATH}/examples/checks/check_display_led`.
 The Audio Kit board has hardware bugs. Two capacitors must be connected to on-board microphones. See
 [a post](https://community.home-assistant.io/t/esp32-a1s-audio-kit-for-voice-assistant/568301/18) in
 Home Assistant forum.
+
+## Resources
+
+* [The‘AI Thinker Audio Kit' Arduino Challenge](https://www.pschatzmann.ch/home/2021/12/06/the-ai-thinker-audio-kit-experience-or-nothing-is-right/)
+  A series of posts about Ai Thinker ESP32 A1S Audio Kit
+* [Schematic](https://docs.ai-thinker.com/_media/esp32-audio-kit_v2.2_sch.pdf)
+* [arduino-audiokit/tree/main/src/audio_board](https://github.com/pschatzmann/arduino-audiokit/tree/main/src/audio_board)
+  An implementation for Arduino

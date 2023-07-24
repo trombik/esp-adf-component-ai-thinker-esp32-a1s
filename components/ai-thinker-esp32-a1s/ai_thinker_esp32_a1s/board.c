@@ -84,8 +84,7 @@ esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
                      (1ULL << get_input_voldown_id())   | \
                      (1ULL << get_input_mode_id())      | \
                      (1ULL << get_input_set_id())       | \
-                     (1ULL << get_input_play_id())      | \
-                     (1ULL << get_input_mute_id())
+                     (1ULL << get_input_play_id())
     };
     esp_periph_handle_t button_handle = periph_button_init(&btn_cfg);
     AUDIO_NULL_CHECK(TAG, button_handle, return ESP_ERR_ADF_MEMORY_LACK);

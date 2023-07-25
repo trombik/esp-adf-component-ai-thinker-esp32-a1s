@@ -29,6 +29,7 @@ Here is a list of tested peripherals:
 - [x] Audio output to speakers
 - [x] Keys
 - [x] On-board LEDs
+- [x] Bluetooth
 - [ ] Mic input
 - [ ] Line input
 - [ ] On-board microphones
@@ -63,6 +64,12 @@ red. `esp-adf` provides `get_blue_led_gpio()` and `get_green_led_gpio()`, not
 one for red LED.
 
 To test the LED, use `${ADF_PATH}/examples/checks/check_display_led`.
+
+## Bluetooth
+
+To test `a2dp` sink, use `${ADF_PATH}/examples/player/pipeline_a2dp_sink_stream`.
+
+`a2dp` source has not been tested.
 
 ## Tested environment
 

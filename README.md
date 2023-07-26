@@ -34,7 +34,7 @@ Here is a list of tested peripherals:
 - [ ] Line input
 - [x] On-board microphones
 - [ ] SD card
-- [ ] Battery charger
+- [x] Battery charger
 
 ### Speaker outputs
 
@@ -76,6 +76,11 @@ To test `a2dp` sink, use `${ADF_PATH}/examples/player/pipeline_a2dp_sink_stream`
 To test on-board microphones, use `${ADF_PATH}/examples/recorder/pipeline_raw_http`.
 
 See also "Known issues" below.
+
+## Battery charger
+
+The battery charger should work, but no GPIO pin is connected to the charger
+circuit. As such, the battery service in `esp-adf` cannot be used.
 
 ## Tested environment
 

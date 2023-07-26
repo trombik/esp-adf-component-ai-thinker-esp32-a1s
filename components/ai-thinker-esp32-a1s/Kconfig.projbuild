@@ -2,13 +2,15 @@ menu "Custom Audio Board"
 
 choice CUSTOM_AUDIO_BOARD
     prompt "Select a custom audio board"
-    default AI_THINKER_ESP32_A1S_ES8388_VARIANT_7
+    default AI_THINKER_ESP32_A1S_ES8388_VARIANT_5
     help
         Select an audio board to use with the ESP-ADF
 
     # TODO add more variants, see https://github.com/pschatzmann/arduino-audiokit/tree/main/src/audio_board
     config AI_THINKER_ESP32_A1S_ES8388_VARIANT_7
         bool "Ai Thinker ESP32 A1S Audio Kit (ES8388, variant 7)"
+    config AI_THINKER_ESP32_A1S_ES8388_VARIANT_5
+        bool "Ai Thinker ESP32 A1S Audio Kit (ES8388, variant 5)"
 endchoice
 
 config AI_THINKER_ESP32_A1S_AUDIO_KIT_USING_SDCARD

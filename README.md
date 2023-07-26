@@ -19,8 +19,9 @@ audio codec, another with `es8388`. Both chips has the same name. The one with
 Thinker A1S Audio Kit boards in the market: A1S `es8388` chips with different
 pin assignments.
 
-* Ai Thinker A1S with `es8388` (probably the latest variant available in
+* Ai Thinker A1S with `es8388` variant 5 (probably the latest variant available in
   AliExpress)
+* Ai Thinker A1S with `es8388` variant 7
 
 ## What works
 

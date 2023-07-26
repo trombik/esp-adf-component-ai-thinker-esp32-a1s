@@ -30,9 +30,9 @@ Here is a list of tested peripherals:
 - [x] Keys
 - [x] On-board LEDs
 - [x] Bluetooth
-- [x] Mic input
+- [ ] Mic input
 - [ ] Line input
-- [ ] On-board microphones
+- [x] On-board microphones
 - [ ] SD card
 - [ ] Battery charger
 
@@ -71,7 +71,7 @@ To test `a2dp` sink, use `${ADF_PATH}/examples/player/pipeline_a2dp_sink_stream`
 
 `a2dp` source has not been tested.
 
-## Mic input
+## On-board microphones
 
 To test on-board microphones, use `${ADF_PATH}/examples/recorder/pipeline_raw_http`.
 

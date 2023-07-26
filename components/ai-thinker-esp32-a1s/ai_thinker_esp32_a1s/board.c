@@ -31,7 +31,11 @@
 #include "periph_sdcard.h"
 #endif
 #include "led_indicator.h"
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_ADC)
+#include "periph_adc_button.h"
+#elif defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_GPIO)
 #include "periph_button.h"
+#endif
 
 static const char *TAG = "AUDIO_BOARD";
 
@@ -46,7 +50,9 @@ audio_board_handle_t audio_board_init(void)
     board_handle = (audio_board_handle_t) audio_calloc(1, sizeof(struct audio_board_handle));
     AUDIO_MEM_CHECK(TAG, board_handle, return NULL);
     board_handle->audio_hal = audio_board_codec_init();
-
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_ADC)
+    board_handle->adc_hal = audio_board_adc_init();
+#endif
     return board_handle;
 }
 
@@ -80,6 +86,24 @@ display_service_handle_t audio_board_led_init(void)
     return display_service_create(&display);
 }
 
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_ADC)
+esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
+{
+    esp_err_t ret = ESP_OK;
+    periph_adc_button_cfg_t adc_btn_cfg = PERIPH_ADC_BUTTON_DEFAULT_CONFIG();
+    adc_arr_t adc_btn_tag = ADC_DEFAULT_ARR();
+    adc_btn_tag.adc_ch = ADC1_CHANNEL_0;
+    adc_btn_tag.total_steps = 6;
+    int btn_array[7] = {100, 600, 1000, 1375, 1775, 2195, 3100};
+    adc_btn_tag.adc_level_step = btn_array;
+    adc_btn_cfg.arr = &adc_btn_tag;
+    adc_btn_cfg.arr_size = 1;
+    esp_periph_handle_t adc_btn_handle = periph_adc_button_init(&adc_btn_cfg);
+    AUDIO_NULL_CHECK(TAG, adc_btn_handle, return ESP_ERR_ADF_MEMORY_LACK);
+    ret = esp_periph_start(set, adc_btn_handle);
+    return ret;
+}
+#elif defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_GPIO)
 esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
 {
     periph_button_cfg_t btn_cfg = {
@@ -96,6 +120,7 @@ esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
     ret = esp_periph_start(set, button_handle);
     return ret;
 }
+#endif
 
 #if defined(CONFIG_AI_THINKER_ESP32_A1S_AUDIO_KIT_USING_SDCARD)
 esp_err_t audio_board_sdcard_init(esp_periph_set_handle_t set, periph_sdcard_mode_t mode)
@@ -137,7 +162,10 @@ audio_board_handle_t audio_board_get_handle(void)
 esp_err_t audio_board_deinit(audio_board_handle_t audio_board)
 {
     esp_err_t ret = ESP_OK;
-    ret = audio_hal_deinit(audio_board->audio_hal);
+    ret |= audio_hal_deinit(audio_board->audio_hal);
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_ADC)
+    ret |= audio_hal_deinit(audio_board->adc_hal);
+#endif
     audio_free(audio_board);
     board_handle = NULL;
     return ret;

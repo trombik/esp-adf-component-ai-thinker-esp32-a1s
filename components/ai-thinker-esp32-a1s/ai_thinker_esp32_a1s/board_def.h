@@ -89,6 +89,8 @@ extern audio_hal_func_t AUDIO_CODEC_ES8388_DEFAULT_HANDLE;
  */
 #define FUNC_BUTTON_EN            (1)
 #define INPUT_KEY_NUM             6
+
+#if defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_GPIO)
 #define BUTTON_VOLUP_ID           GPIO_NUM_5  /* KEY6 */
 #define BUTTON_VOLDOWN_ID         GPIO_NUM_18 /* KEY5 */
 #define BUTTON_SET_ID             GPIO_NUM_23 /* KEY4 */
@@ -96,12 +98,11 @@ extern audio_hal_func_t AUDIO_CODEC_ES8388_DEFAULT_HANDLE;
 #define BUTTON_REC_ID             GPIO_NUM_13 /* KEY2 */
 #define BUTTON_MODE_ID            GPIO_NUM_36 /* KEY1 */
 
-/* TODO with GPIO36, it might possible to use ADC buttons */
 #define INPUT_KEY_DEFAULT_INFO() {                  \
     {                                               \
         .type = PERIPH_ID_BUTTON,                   \
-        .user_id = INPUT_KEY_USER_ID_REC,         \
-        .act_id = BUTTON_REC_ID,                  \
+        .user_id = INPUT_KEY_USER_ID_REC,           \
+        .act_id = BUTTON_REC_ID,                    \
     },                                              \
     {                                               \
         .type = PERIPH_ID_BUTTON,                   \
@@ -129,5 +130,46 @@ extern audio_hal_func_t AUDIO_CODEC_ES8388_DEFAULT_HANDLE;
         .act_id = BUTTON_VOLDOWN_ID,                \
     }                                               \
 }
+#elif defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_ADC)
+#define ADC_DETECT_GPIO           GPIO_NUM_36
+#define BUTTON_VOLUP_ID           5 /* KEY6 */
+#define BUTTON_VOLDOWN_ID         4 /* KEY5 */
+#define BUTTON_SET_ID             3 /* KEY4 */
+#define BUTTON_PLAY_ID            2 /* KEY3 */
+#define BUTTON_REC_ID             1 /* KEY2 */
+#define BUTTON_MODE_ID            0 /* KEY1 */
+#define INPUT_KEY_DEFAULT_INFO() {                  \
+    {                                               \
+        .type = PERIPH_ID_ADC_BTN,                  \
+        .user_id = INPUT_KEY_USER_ID_REC,           \
+        .act_id = BUTTON_REC_ID,                    \
+    },                                              \
+    {                                               \
+        .type = PERIPH_ID_ADC_BTN,                  \
+        .user_id = INPUT_KEY_USER_ID_MODE,          \
+        .act_id = BUTTON_MODE_ID,                   \
+    },                                              \
+    {                                               \
+        .type = PERIPH_ID_ADC_BTN,                  \
+        .user_id = INPUT_KEY_USER_ID_SET,           \
+        .act_id = BUTTON_SET_ID,                    \
+    },                                              \
+    {                                               \
+        .type = PERIPH_ID_ADC_BTN,                  \
+        .user_id = INPUT_KEY_USER_ID_PLAY,          \
+        .act_id = BUTTON_PLAY_ID,                   \
+    },                                              \
+    {                                               \
+        .type = PERIPH_ID_ADC_BTN,                  \
+        .user_id = INPUT_KEY_USER_ID_VOLUP,         \
+        .act_id = BUTTON_VOLUP_ID,                  \
+    },                                              \
+    {                                               \
+        .type = PERIPH_ID_ADC_BTN,                  \
+        .user_id = INPUT_KEY_USER_ID_VOLDOWN,       \
+        .act_id = BUTTON_VOLDOWN_ID,                \
+    }                                               \
+}
+#endif
 
 #endif

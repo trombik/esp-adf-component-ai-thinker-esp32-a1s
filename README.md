@@ -57,6 +57,12 @@ To test keys, use `${ADF_PATH}/examples/checks/check_board_buttons`.
 Note that `KEY2` cannot be used with SD card because the `GPIO` for `KEY2` is
 shared with SD card peripheral.
 
+According to the schematic,
+[ADC Button Peripheral](https://docs.espressif.com/projects/esp-adf/en/latest/api-reference/peripherals/periph_adc_button.html)
+is supposed to work. However, my board does not have necessary resistors
+(`R60`, `R61` ...). If yours has them,
+give `CONFIG_AI_THINKER_ESP32_A1S_ES8388_BUTTON_KEY_ADC` a try.
+
 ### On-board LED
 
 The board has two red LEDs connected to GPIO pins. By default, only one LED is

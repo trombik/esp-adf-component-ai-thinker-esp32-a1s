@@ -3,13 +3,14 @@
 ## Usage
 
 * Clone the repository by `git clone https://github.com/trombik/esp-adf-component-ai-thinker-esp32-a1s.git`
-* Create `components` directory in a project directory
+* In the root of your project directory create a `components`
 * Create a symlink to
   `idf-component-ai-thinker-esp32-a1s/components/ai-thinker-esp32-a1s` under
   `components`.
 * Run `idf.py menuconfig`
-* Select `Custom audio board` under `Audio HAL` > `Audio board`
+* Under `Audio HAL` > `Audio board` select `Custom audio board` 
 * Select a custom board under `Custom Audio Board`
+* Make sure to press `s` to save
 
 ## Supported boards
 
@@ -34,7 +35,7 @@ Here is a list of tested peripherals:
 - [ ] Mic input
 - [ ] Line input
 - [x] On-board microphones
-- [ ] SD card
+- [x] SD card
 - [x] Battery charger
 
 ### Speaker outputs
@@ -80,9 +81,15 @@ To test `a2dp` sink, use `${ADF_PATH}/examples/player/pipeline_a2dp_sink_stream`
 
 ## On-board microphones
 
+To use on-board microphones you need to resolder two capacitors to a correct position
 To test on-board microphones, use `${ADF_PATH}/examples/recorder/pipeline_raw_http`.
 
 See also "Known issues" below.
+
+## SD card
+
+To make SD card work you need to set `DATA3` and `CMD` on-board switched to the ON position. Otherwise you'll get errors about missing pull-up resistor.
+Then you need to enable it in `idf.py menuconfig` by going to `Custom Audio Board`, then selecting `Use on-board SD card`.
 
 ## Battery charger
 
@@ -91,8 +98,8 @@ circuit. As such, the battery service in `esp-adf` cannot be used.
 
 ## Tested environment
 
-- `esp-idf` `v5.0.2`
-- `esp-adf` `master`
+- `esp-idf` `v5.0.2`, `v5.4-dirty`
+- `esp-adf` `master` (last tested Dec 2025)
 
 ## Known issues
 

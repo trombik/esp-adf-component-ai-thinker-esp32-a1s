@@ -9,7 +9,7 @@
   `components`.
 * Run `idf.py menuconfig`
 * Under `Audio HAL` > `Audio board` select `Custom audio board` 
-* Under `Custom Audio Board` select correct version (see Supported boards below)
+* Back in main menu, under `Custom Audio Board` select correct version (see Supported boards below)
 * Make sure to press `s` to save
 
 ## Supported boards

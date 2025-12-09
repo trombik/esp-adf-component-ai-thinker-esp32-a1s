@@ -9,7 +9,7 @@
   `components`.
 * Run `idf.py menuconfig`
 * Under `Audio HAL` > `Audio board` select `Custom audio board` 
-* Select a custom board under `Custom Audio Board`
+* Under `Custom Audio Board` select correct version (see Supported boards below)
 * Make sure to press `s` to save
 
 ## Supported boards
@@ -20,8 +20,7 @@ audio codec, another with `es8388`. Both chips has the same name. The one with
 Thinker A1S Audio Kit boards in the market: A1S `es8388` chips with different
 pin assignments.
 
-* Ai Thinker A1S with `es8388` variant 5 (probably the latest variant available in
-  AliExpress)
+* Ai Thinker A1S with `es8388` variant 5 (most popular on AliExpress)
 * Ai Thinker A1S with `es8388` variant 7
 
 ## What works
@@ -88,8 +87,8 @@ See also "Known issues" below.
 
 ## SD card
 
-To make SD card work you need to set `DATA3` and `CMD` on-board switched to the ON position. Otherwise you'll get errors about missing pull-up resistor.
-Then you need to enable it in `idf.py menuconfig` by going to `Custom Audio Board`, then selecting `Use on-board SD card`.
+`idf.py menuconfig` and under `Custom Audio Board` check `Use on-board SD card`. Press `s` to save.
+SD card won't work unless you set `DATA3` and `CMD` on-board switches to the ON position. Otherwise you'll get errors about missing pull-up resistor.
 
 ## Battery charger
 
@@ -103,15 +102,14 @@ circuit. As such, the battery service in `esp-adf` cannot be used.
 
 ## Known issues
 
-The Audio Kit board has hardware bugs. Two capacitors must be connected to on-board microphones. See
+Some boards sold on AliExpress have hardware bug Audio. Two capacitors must be moved or added for on-board microphones to work. See
 [a post](https://community.home-assistant.io/t/esp32-a1s-audio-kit-for-voice-assistant/568301/18) in
 Home Assistant forum.
 
 ## Resources
 
-* [The‘AI Thinker Audio Kit' Arduino Challenge](https://www.pschatzmann.ch/home/2021/12/06/the-ai-thinker-audio-kit-experience-or-nothing-is-right/)
+* [The ‘AI Thinker Audio Kit' Arduino Challenge](https://www.pschatzmann.ch/home/2021/12/06/the-ai-thinker-audio-kit-experience-or-nothing-is-right/)
   A series of posts about Ai Thinker ESP32 A1S Audio Kit
 * [Schematic](https://web.archive.org/web/20241216144927/https://docs.ai-thinker.com/_media/esp32-audio-kit_v2.2_sch.pdf)
-* [arduino-audiokit/tree/main/src/audio_board](https://github.com/pschatzmann/arduino-audiokit/tree/main/src/audio_board)
-  An implementation for Arduino
 * [ES8388 User Guide](https://dl.radxa.com/rock2/docs/hw/ds/ES8388%20user%20Guide.pdf)
+* [Arduino driver](https://github.com/pschatzmann/arduino-audio-driver)

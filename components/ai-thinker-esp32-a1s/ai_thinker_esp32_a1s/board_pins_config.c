@@ -52,10 +52,10 @@ esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config)
     return ESP_OK;
 }
 
-esp_err_t get_i2s_pins(i2s_port_t port, board_i2s_pin_t *i2s_config)
+esp_err_t get_i2s_pins(int port, board_i2s_pin_t *i2s_config)
 {
     AUDIO_NULL_CHECK(TAG, i2s_config, return ESP_FAIL);
-    if (port == I2S_NUM_0) {
+    if (port == 0) {
         i2s_config->mck_io_num = GPIO_NUM_0;
 #if defined(CONFIG_AI_THINKER_ESP32_A1S_ES8388_VARIANT_7)
         i2s_config->bck_io_num = GPIO_NUM_5;
@@ -65,7 +65,7 @@ esp_err_t get_i2s_pins(i2s_port_t port, board_i2s_pin_t *i2s_config)
         i2s_config->ws_io_num = GPIO_NUM_25;
         i2s_config->data_out_num = GPIO_NUM_26;
         i2s_config->data_in_num = GPIO_NUM_35;
-    } else if (port == I2S_NUM_1) {
+    } else if (port == 1) {
         i2s_config->bck_io_num = -1;
         i2s_config->ws_io_num = -1;
         i2s_config->data_out_num = -1;
